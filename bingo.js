@@ -6,11 +6,13 @@
     }
     var bingox = {}
     var bingoy = {}
+    var bingoz = [0,0]
     var bingcnt = 0
     $.bingoJs = {
         reset:function(){
             bingox = {}
             bingoy = {}
+            bingoz = [0,0]
             bingcnt = 0
             option = {
                 size: 3,
@@ -20,7 +22,7 @@
         },
         ready: function(s, id) {
             this.reset()
-            if (s) option.size = s
+            if (s) option.size = parseInt(s)
             if (id) option.id = id
             for (var i = 1; i <= (option.size * option.size); i++) option.list.push(i)
             this.shuffle()
@@ -47,13 +49,24 @@
         clickcell: function(s) {
             var c = s + 1
             var x = (c % option.size === 0) ? option.size : c % option.size
-            var y = Math.floor((c + option.size - 1) / option.size)
+            var y = Math.floor(((c + option.size) - 1) / option.size)
+
             if (!bingox[x]) bingox[x] = 0
             if (!bingoy[y]) bingoy[y] = 0
             bingox[x]++
             bingoy[y]++
             if (bingox[x] == option.size) bingcnt++
             if (bingoy[y] == option.size) bingcnt++
+
+            if(x === y){
+                bingoz[0]++
+                if (bingoz[0] == option.size) bingcnt++
+            }
+
+            if(option.size % 2 === 0 && (x+y) === (option.size+1)){
+                bingoz[1]++
+                if (bingoz[1] == option.size) bingcnt++
+            }
             $('.cell_' + s).css("background-color", "red")
         },
         chkbingocnt: function() {
