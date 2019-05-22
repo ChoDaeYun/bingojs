@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="bingo.js" ></script>
+    <title>빙고</title>
+    <style>
+        .b_table{display: table;width:100%}
+        .b_table_row{display:table-row;}
+        .b_table_cell{display:table-cell;border:1px solid gray;cursor:pointer}
+    </style>
+</head>
+<body>
+<a href="javascript:void(0)" onclick="$.bingoJs.ready(10);return false;">빙고시작</a>
+<a href="javascript:void(0)" onclick="$.bingoJs.chkbingocnt();return false;">빙고수확인</a>
+<div class="cnt">0</div>
+<div id="bingo" style="width:500px;"></div>
+<script>
+    $.bingoJs.ready(10)
+    function check(){
+        $('.cnt').html($.bingoJs.chkbingocnt())
+    }
+</script>
+</body>
+</html>
