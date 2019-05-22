@@ -63,7 +63,7 @@
                 if (bingoz[0] == option.size) bingcnt++
             }
 
-            if(option.size % 2 === 0 && (x+y) === (option.size+1)){
+            if((x+y) === (option.size+1)){
                 bingoz[1]++
                 if (bingoz[1] == option.size) bingcnt++
             }
